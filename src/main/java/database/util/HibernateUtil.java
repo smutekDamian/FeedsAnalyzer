@@ -1,8 +1,10 @@
 package database.util;
 
-import org.hibernate.Session;
+import database.DAO.GenericDAO;
+import database.DAO.GenericDAOHibernate;
+import database.POJO.Countries;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+
 
 /**
  * Created by damian on 03.04.17.
@@ -10,13 +12,11 @@ import org.hibernate.cfg.Configuration;
 public class HibernateUtil {
     private static SessionFactory factory;
     public static void main(String[] args){
-        Configuration configuration = new Configuration().configure();
-        factory = configuration.buildSessionFactory();
-        Session session = factory.openSession();
-        session.beginTransaction();
-        System.out.println("Hibernate working");
-        session.getTransaction().commit();
-        session.close();
-        return;
+        GenericDAO<Countries,Integer> dao = new GenericDAOHibernate<Countries,Integer>(Countries.class);
+        Countries country = new Countries();
+        country.setName("Poland");
+        Integer result = dao.create(country);
+        System.out.println("WYNIK TO : " + result);
+        dao.closeSession();
     }
 }

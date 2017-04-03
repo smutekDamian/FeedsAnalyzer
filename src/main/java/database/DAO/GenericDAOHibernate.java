@@ -14,26 +14,38 @@ public class GenericDAOHibernate <T, PK extends Serializable> implements Generic
 
     private SessionFactory sessionFactory;
     private Class<T> type;
+    private Session session;
 
     public GenericDAOHibernate(Class<T> type){
         this.type = type;
+        session = getSession();
     }
 
     @SuppressWarnings("unchecked")
     public PK create(T newInstance) {
-        return (PK) getSession().save(newInstance);
+        session.beginTransaction();
+        PK result = (PK) session.save(newInstance);
+        session.getTransaction().commit();
+        return result;
     }
 
     public T read(PK id) {
-        return (T) getSession().get(type,id);
+        session.beginTransaction();
+        T result = session.get(type,id);
+        session.getTransaction().commit();
+        return result;
     }
 
     public void update(T transientObject) {
-        getSession().update(transientObject);
+        session.beginTransaction();
+        session.update(transientObject);
+        session.getTransaction().commit();
     }
 
     public void delete(T persistentObject) {
-        getSession().delete(persistentObject);
+        session.beginTransaction();
+        session.delete(persistentObject);
+        session.getTransaction().commit();
     }
 
     public Session getSession()
@@ -41,6 +53,10 @@ public class GenericDAOHibernate <T, PK extends Serializable> implements Generic
         Configuration configuration = new Configuration().configure();
         sessionFactory = configuration.buildSessionFactory();
         return sessionFactory.openSession();
+    }
+
+    public void closeSession(){
+        sessionFactory.close();
     }
 
     public void setSessionFactory(SessionFactory sessionFactory) {

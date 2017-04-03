@@ -11,4 +11,5 @@ public interface GenericDAO <T, PK extends Serializable> {
     T read(PK id);
     void update(T transientObject);
     void delete(T persistentObject);
+    void closeSession();
 }
