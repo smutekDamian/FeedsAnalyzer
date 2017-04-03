@@ -1,4 +1,4 @@
-package POJO;
+package database.POJO;
 
 import javax.persistence.*;
 import java.util.Date;

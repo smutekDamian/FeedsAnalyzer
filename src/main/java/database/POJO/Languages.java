@@ -1,4 +1,4 @@
-package POJO;
+package database.POJO;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -8,17 +8,17 @@ import java.util.Set;
  * Created by damian on 03.04.17.
  */
 @Entity
-@Table(name = "countries")
-public class Countries {
+@Table(name = "languages")
+public class Languages {
     @Id@GeneratedValue
     @Column
     private int ID;
     @Column(length = 25)
     private String name;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "countryID")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "languageID")
     private Set<Newspapers> newspapers = new HashSet<Newspapers>(0);
 
-    public Countries() {
+    public Languages() {
     }
 
     public int getID() {
