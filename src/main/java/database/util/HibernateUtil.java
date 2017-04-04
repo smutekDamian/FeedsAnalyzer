@@ -3,6 +3,8 @@ package database.util;
 import database.DAO.GenericDAO;
 import database.DAO.GenericDAOHibernate;
 import database.POJO.Country;
+import database.POJO.Language;
+
 
 
 /**
@@ -19,6 +21,17 @@ public class HibernateUtil {
     }
 
     public static void addLanguages(){
-
+        String[] languages = {
+                "English",
+                "Spanish",
+                "French",
+        };
+        GenericDAO<Language,Integer> dao = new GenericDAOHibernate<Language, Integer>((Language.class));
+        for (String language: languages) {
+            Language lg = new Language();
+            lg.setName(language);
+            dao.create(lg);
+        }
+        dao.closeSession();
     }
 }
