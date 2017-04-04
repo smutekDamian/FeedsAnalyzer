@@ -11,12 +11,12 @@
         <property name="hibernate.connection.password">!0p4ss</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
-        <mapping class="database.POJO.PressReleasesTags" />
-        <mapping class="database.POJO.PressReleases" />
-        <mapping class="database.POJO.Countries" />
-        <mapping class="database.POJO.Feeds" />
-        <mapping class="database.POJO.Languages" />
-        <mapping class="database.POJO.Newspapers" />
-        <mapping class="database.POJO.TAGs" />
+        <mapping class="database.POJO.PressReleasesTag" />
+        <mapping class="database.POJO.PressRelease" />
+        <mapping class="database.POJO.Country" />
+        <mapping class="database.POJO.Feed" />
+        <mapping class="database.POJO.Language" />
+        <mapping class="database.POJO.Newspaper" />
+        <mapping class="database.POJO.TAG" />
     </session-factory>
 </hibernate-configuration>

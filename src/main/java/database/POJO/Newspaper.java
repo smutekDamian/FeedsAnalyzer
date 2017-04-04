@@ -9,7 +9,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "newspapers")
-public class Newspapers {
+public class Newspaper {
     @Id@GeneratedValue
     @Column
     private int ID;
@@ -17,14 +17,14 @@ public class Newspapers {
     private String name;
     @ManyToOne
     @JoinColumn(name = "countryID")
-    private Countries countryID;
+    private Country countryID;
     @ManyToOne
     @JoinColumn(name = "languageID")
-    private Languages languageID;
+    private Language languageID;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "newspaperID")
-    private Set<Feeds> feeds = new HashSet<Feeds>(0);
+    private Set<Feed> feeds = new HashSet<Feed>(0);
 
-    public Newspapers() {
+    public Newspaper() {
     }
 
     public int getID() {
@@ -43,19 +43,19 @@ public class Newspapers {
         this.name = name;
     }
 
-    public Countries getCountryID() {
+    public Country getCountryID() {
         return countryID;
     }
 
-    public void setCountryID(Countries countryID) {
+    public void setCountryID(Country countryID) {
         this.countryID = countryID;
     }
 
-    public Languages getLanguageID() {
+    public Language getLanguageID() {
         return languageID;
     }
 
-    public void setLanguageID(Languages languageID) {
+    public void setLanguageID(Language languageID) {
         this.languageID = languageID;
     }
 }

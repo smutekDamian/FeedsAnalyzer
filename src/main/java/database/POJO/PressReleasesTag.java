@@ -7,18 +7,18 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "pressreleasestags")
-public class PressReleasesTags {
+public class PressReleasesTag {
     @Id@GeneratedValue
     @Column
     private int ID;
     @ManyToOne
     @JoinColumn(name = "pressReleaseID")
-    private PressReleases pressReleaseID;
+    private PressRelease pressReleaseID;
     @ManyToOne
     @JoinColumn(name = "tagID")
-    private TAGs tagID;
+    private TAG tagID;
 
-    public PressReleasesTags() {
+    public PressReleasesTag() {
     }
 
     public int getID() {
@@ -29,19 +29,19 @@ public class PressReleasesTags {
         this.ID = ID;
     }
 
-    public PressReleases getPressReleaseID() {
+    public PressRelease getPressReleaseID() {
         return pressReleaseID;
     }
 
-    public void setPressReleaseID(PressReleases pressReleaseID) {
+    public void setPressReleaseID(PressRelease pressReleaseID) {
         this.pressReleaseID = pressReleaseID;
     }
 
-    public TAGs getTagID() {
+    public TAG getTagID() {
         return tagID;
     }
 
-    public void setTagID(TAGs tagID) {
+    public void setTagID(TAG tagID) {
         this.tagID = tagID;
     }
 }

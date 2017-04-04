@@ -10,13 +10,13 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "pressreleases")
-public class PressReleases {
+public class PressRelease {
     @Id@GeneratedValue
     @Column
     private int ID;
     @ManyToOne
     @JoinColumn(name = "feedID")
-    private Feeds feedID;
+    private Feed feedID;
     @Column(length = 250)
     private String title;
     @Column
@@ -24,9 +24,9 @@ public class PressReleases {
     @Column(length = 500)
     private String content;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pressReleaseID")
-    private Set<PressReleasesTags> pressReleasesTags = new HashSet<PressReleasesTags>(0);
+    private Set<PressReleasesTag> pressReleasesTags = new HashSet<PressReleasesTag>(0);
 
-    public PressReleases() {
+    public PressRelease() {
     }
 
     public int getID() {
@@ -37,11 +37,11 @@ public class PressReleases {
         this.ID = ID;
     }
 
-    public Feeds getFeedID() {
+    public Feed getFeedID() {
         return feedID;
     }
 
-    public void setFeedID(Feeds feedID) {
+    public void setFeedID(Feed feedID) {
         this.feedID = feedID;
     }
 
@@ -69,11 +69,11 @@ public class PressReleases {
         this.content = content;
     }
 
-    public Set<PressReleasesTags> getPressReleasesTags() {
+    public Set<PressReleasesTag> getPressReleasesTags() {
         return pressReleasesTags;
     }
 
-    public void setPressReleasesTags(Set<PressReleasesTags> pressReleasesTags) {
+    public void setPressReleasesTags(Set<PressReleasesTag> pressReleasesTags) {
         this.pressReleasesTags = pressReleasesTags;
     }
 }

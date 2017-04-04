@@ -9,7 +9,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "tags")
-public class TAGs {
+public class TAG {
     @Id@GeneratedValue
     @Column
     private int ID;
@@ -17,11 +17,11 @@ public class TAGs {
     private String name;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID")
-    private Countries countryID;
+    private Country countryID;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tagID")
-    private Set<PressReleasesTags> pressReleasesTags = new HashSet<PressReleasesTags>(0);
+    private Set<PressReleasesTag> pressReleasesTags = new HashSet<PressReleasesTag>(0);
 
-    public TAGs() {
+    public TAG() {
     }
 
     public int getID() {
@@ -40,19 +40,19 @@ public class TAGs {
         this.name = name;
     }
 
-    public Countries getCountryID() {
+    public Country getCountryID() {
         return countryID;
     }
 
-    public void setCountryID(Countries countryID) {
+    public void setCountryID(Country countryID) {
         this.countryID = countryID;
     }
 
-    public Set<PressReleasesTags> getPressReleasesTags() {
+    public Set<PressReleasesTag> getPressReleasesTags() {
         return pressReleasesTags;
     }
 
-    public void setPressReleasesTags(Set<PressReleasesTags> pressReleasesTags) {
+    public void setPressReleasesTags(Set<PressReleasesTag> pressReleasesTags) {
         this.pressReleasesTags = pressReleasesTags;
     }
 }

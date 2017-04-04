@@ -8,17 +8,17 @@ import java.util.Set;
  * Created by damian on 03.04.17.
  */
 @Entity
-@Table(name = "languages")
-public class Languages {
+@Table(name = "countries")
+public class Country {
     @Id@GeneratedValue
     @Column
     private int ID;
     @Column(length = 25)
     private String name;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "languageID")
-    private Set<Newspapers> newspapers = new HashSet<Newspapers>(0);
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "countryID")
+    private Set<Newspaper> newspapers = new HashSet<Newspaper>(0);
 
-    public Languages() {
+    public Country() {
     }
 
     public int getID() {
@@ -37,11 +37,11 @@ public class Languages {
         this.name = name;
     }
 
-    public Set<Newspapers> getNewspapers() {
+    public Set<Newspaper> getNewspapers() {
         return newspapers;
     }
 
-    public void setNewspapers(Set<Newspapers> newspapers) {
+    public void setNewspapers(Set<Newspaper> newspapers) {
         this.newspapers = newspapers;
     }
 }
