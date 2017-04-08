@@ -21,6 +21,10 @@ public class Language {
     public Language() {
     }
 
+    public Language(int id) {
+        this.ID = id;
+    }
+
     public int getID() {
         return ID;
     }

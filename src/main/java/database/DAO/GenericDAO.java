@@ -1,6 +1,7 @@
 package database.DAO;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by damian on 04.04.17.
@@ -12,4 +13,6 @@ public interface GenericDAO <T, PK extends Serializable> {
     void update(T transientObject);
     void delete(T persistentObject);
     void closeSession();
+    List executeQuery(String query);
+    void flushAndClear();
 }

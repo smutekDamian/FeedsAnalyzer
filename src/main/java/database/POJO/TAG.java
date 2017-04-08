@@ -16,7 +16,7 @@ public class TAG {
     @Column(length = 5)
     private String name;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID")
+    @JoinColumn(name = "countryID")
     private Country countryID;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tagID")
     private Set<PressReleasesTag> pressReleasesTags = new HashSet<PressReleasesTag>(0);

@@ -4,8 +4,10 @@ package database.DAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.loader.custom.sql.SQLQueryParser;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by damian on 04.04.17.
@@ -33,6 +35,10 @@ public class GenericDAOHibernate <T, PK extends Serializable> implements Generic
         return result;
     }
 
+    public List executeQuery(String query){
+        return session.createQuery(query).getResultList();
+    }
+
     public void update(T transientObject) {
         session.update(transientObject);
     }
@@ -49,8 +55,13 @@ public class GenericDAOHibernate <T, PK extends Serializable> implements Generic
     }
 
     public void closeSession(){
-        sessionFactory.close();
         session.getTransaction().commit();
+        sessionFactory.close();
+    }
+
+    public void flushAndClear(){
+        session.flush();
+        session.clear();
     }
 
     public void setSessionFactory(SessionFactory sessionFactory) {

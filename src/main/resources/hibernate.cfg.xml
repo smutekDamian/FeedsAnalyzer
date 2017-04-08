@@ -6,9 +6,9 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://mysql2.gear.host/ioproject</property>
-        <property name="hibernate.connection.username">damians</property>
-        <property name="hibernate.connection.password">!0p4ss</property>
+        <property name="hibernate.connection.url">jdbc:mysql://mysql.agh.edu.pl/smutek</property>
+        <property name="hibernate.connection.username">smutek</property>
+        <property name="hibernate.connection.password">rS0bz1fce6EhbMza</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
         <mapping class="database.POJO.PressReleasesTag" />
