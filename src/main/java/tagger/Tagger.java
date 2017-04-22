@@ -2,8 +2,6 @@ package tagger;
 
 import csv.reader.ReaderCsv;
 import csv.writer.WriterCsv;
-
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
