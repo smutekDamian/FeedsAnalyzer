@@ -20,14 +20,12 @@ public class WriterCsv {
         }
 
     }
-    private static void write(String filename, String... args ){
+    public static void write(String filename, String... args ){
         CSVWriter writer = null;
         try {
-            writer = new CSVWriter(new FileWriter(filename, true), '\t', CSVWriter.NO_QUOTE_CHARACTER);
+            writer = new CSVWriter(new FileWriter(filename, true), '\t', CSVWriter.DEFAULT_QUOTE_CHARACTER);
             String[] textToWrite = new String[args.length];
-            for (int i = 0; i < args.length; i++){
-                textToWrite[i] = args[i];
-            }
+            System.arraycopy(args, 0, textToWrite, 0, args.length);
             writer.writeNext(textToWrite);
             writer.close();
         } catch (IOException e1) {

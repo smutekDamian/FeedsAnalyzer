@@ -87,7 +87,7 @@ public class HibernateUtil {
 
     public static void addCountriesToDB(){
         String filePath = "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/tagsAndCountries.csv";
-        List<String> countries = ReaderCsv.readAtPosition(filePath, 1);
+        List<String> countries = ReaderCsv.readAtPosition(filePath, 1, ' ');
         GenericDAO<Country,Integer> dao = new GenericDAOHibernate<Country, Integer>(Country.class);
         for (int i = 0; i < countries.size(); i++){
             Country addingCountry = new Country();
@@ -112,8 +112,8 @@ public class HibernateUtil {
 
     public static void addTagsToDb(){
         String filePath = "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/tagsAndCountries.csv";
-        List<String> countries = ReaderCsv.readAtPosition(filePath, 1);
-        List<String> tags = ReaderCsv.readAtPosition(filePath, 0);
+        List<String> countries = ReaderCsv.readAtPosition(filePath, 1, ' ');
+        List<String> tags = ReaderCsv.readAtPosition(filePath, 0, ' ');
         GenericDAO<TAG,Integer> dao = new GenericDAOHibernate<TAG,Integer>(TAG.class);
         for (int i = 0; i < tags.size(); i++){
             String countryIdQuery = "select ID from Country where name = \'" + countries.get(i) +"\'";
@@ -175,10 +175,10 @@ public class HibernateUtil {
                 "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/1/Sample_GeomediaDB/en_USA_nytime_int/rss_unique_tagged.csv"
         };
         for (String filePath: filesPaths){
-            List<String> feedsNames = ReaderCsv.readAtPosition(filePath,1);
-            List<String> dates = ReaderCsv.readAtPosition(filePath, 2);
-            List<String> titles = ReaderCsv.readAtPosition(filePath, 3);
-            List<String> contents = ReaderCsv.readAtPosition(filePath, 4);
+            List<String> feedsNames = ReaderCsv.readAtPosition(filePath,1, ' ');
+            List<String> dates = ReaderCsv.readAtPosition(filePath, 2, ' ');
+            List<String> titles = ReaderCsv.readAtPosition(filePath, 3, ' ');
+            List<String> contents = ReaderCsv.readAtPosition(filePath, 4, ' ');
             GenericDAO<PressRelease,Integer> dao = new GenericDAOHibernate<PressRelease, Integer>(PressRelease.class);
             for (int  i = 0; i < feedsNames.size(); i++){
                 String queryForFeed = "from Feed where name = \'" + feedsNames.get(i) + "\'";
@@ -210,8 +210,8 @@ public class HibernateUtil {
                 "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/1/Sample_GeomediaDB/en_USA_nytime_int/rss_unique_tagged.csv"
         };
         for (String filePath: filesPaths) {
-            List<String> titles = ReaderCsv.readAtPosition(filePath, 3);
-            List<String> tags = ReaderCsv.readAtPosition(filePath, 5);
+            List<String> titles = ReaderCsv.readAtPosition(filePath, 3, ' ');
+            List<String> tags = ReaderCsv.readAtPosition(filePath, 5, ' ');
             GenericDAO<PressReleasesTag, Integer> dao = new GenericDAOHibernate<PressReleasesTag, Integer>(PressReleasesTag.class);
             for (int i = 0; i < titles.size(); i++) {
                 if (tags.get(i).equals("") || titles.get(i).contains("\'")){

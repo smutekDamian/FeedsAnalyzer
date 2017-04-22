@@ -17,7 +17,7 @@ public class ReaderCsv {
 
     public static Map<String,String> readTwoFilesAndReturnTagsWithCountries(String tagsFilePath, String countriesFilePath){
         Map<String,String> result = new HashMap<String, String>();
-        List<String> countries = readAtPosition(countriesFilePath, 1);
+        List<String> countries = readAtPosition(countriesFilePath, 1, ' ');
         for (String country: countries){
             String foundTag = findTagFittingToCountry(country, tagsFilePath);
             if (foundTag != null){
@@ -27,14 +27,36 @@ public class ReaderCsv {
         return result;
     }
 
-    public static List<String> readAtPosition(String filepath, int position){
+    public static List<String> readAtPosition(String filepath, int position, char separator){
         List<String> result = null;
         try {
-            CSVReader reader = new CSVReader(new FileReader(filepath), '\t');
+            CSVReader reader = new CSVReader(new FileReader(filepath), separator);
             result = new ArrayList<String>();
             String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
-                result.add(nextLine[position]);
+                try {
+                    result.add(nextLine[position]);
+                } catch (ArrayIndexOutOfBoundsException e){
+                    continue;
+                }
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static Map<String, String> readAtTwoPosition(String filePath, int firstPosition, int secondPosition, char separator){
+        Map<String, String> result = null;
+        try {
+            CSVReader reader = new CSVReader(new FileReader(filePath), separator);
+            result = new HashMap<String, String>();
+            String[] nextLine;
+            while ((nextLine = reader.readNext()) != null) {
+                result.put(nextLine[firstPosition], nextLine[secondPosition]);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
