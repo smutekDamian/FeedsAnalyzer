@@ -5,7 +5,7 @@ import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
-import csv.writer.Feed;
+import csv.writer.DownloadedFeed;
 import csv.writer.FeedCSVWriter;
 
 import java.io.IOException;
@@ -21,13 +21,13 @@ public class RssReader extends FeedCSVWriter {
         this.input = new SyndFeedInput();
     }
 
-    public void readAndWriteToFile(Feed[] feeds){
-        for (Feed feed: feeds){
-            System.out.println(feed.getName() + " parsing");
+    public void readAndWriteToFile(DownloadedFeed[] downloadedFeeds){
+        for (DownloadedFeed downloadedFeed : downloadedFeeds){
+            System.out.println(downloadedFeed.getName() + " parsing");
             try {
-                String filename = "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/Feeds/" + feed.getName() +".csv";
-                SyndFeed syndFeed = input.build(new XmlReader(new URL(feed.getRssUrl())));
-                FeedCSVWriter.writeFeed(filename, syndFeed,feed.getName());
+                String filename = "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/Feeds/" + downloadedFeed.getName() +".csv";
+                SyndFeed syndFeed = input.build(new XmlReader(new URL(downloadedFeed.getRssUrl())));
+                FeedCSVWriter.writeFeed(filename, syndFeed, downloadedFeed.getName());
             } catch (FeedException e) {
                 e.printStackTrace();
             } catch (IOException e) {
