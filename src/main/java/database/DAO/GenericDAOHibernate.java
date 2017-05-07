@@ -18,6 +18,11 @@ public class GenericDAOHibernate <T, PK extends Serializable> implements Generic
     private Class<T> type;
     private Session session;
 
+    public GenericDAOHibernate() {
+        session = getSession();
+        session.beginTransaction();
+    }
+
     public GenericDAOHibernate(Class<T> type){
         this.type = type;
         session = getSession();
