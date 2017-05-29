@@ -2,6 +2,7 @@ package csv.writer;
 
 import au.com.bytecode.opencsv.CSVWriter;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;;
 import java.util.Iterator;
@@ -23,6 +24,11 @@ public class WriterCsv {
     public static void write(String filename, String... args ){
         CSVWriter writer = null;
         try {
+            File file = new File(filename);
+            File parentDir = file.getParentFile();
+            if (parentDir != null){
+                parentDir.mkdirs();
+            }
             writer = new CSVWriter(new FileWriter(filename, true), '\t', CSVWriter.DEFAULT_QUOTE_CHARACTER);
             String[] textToWrite = new String[args.length];
             System.arraycopy(args, 0, textToWrite, 0, args.length);
@@ -32,5 +38,6 @@ public class WriterCsv {
             e1.printStackTrace();
         }
     }
+
 
 }
