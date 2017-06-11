@@ -11,11 +11,9 @@ import csv.writer.FeedCSVWriter;
 import java.io.IOException;
 import java.net.URL;
 
-/**
- * Created by damian on 16.03.17.
- */
+
 public class RssReader extends FeedCSVWriter {
-    private SyndFeedInput input;
+    private final SyndFeedInput input;
 
     public RssReader() {
         this.input = new SyndFeedInput();

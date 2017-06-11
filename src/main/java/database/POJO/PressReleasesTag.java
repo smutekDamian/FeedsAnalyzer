@@ -2,9 +2,6 @@ package database.POJO;
 
 import javax.persistence.*;
 
-/**
- * Created by damian on 03.04.17.
- */
 @Entity
 @Table(name = "pressreleasestags")
 public class PressReleasesTag {

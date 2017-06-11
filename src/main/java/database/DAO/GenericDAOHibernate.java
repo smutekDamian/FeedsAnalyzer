@@ -4,19 +4,16 @@ package database.DAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.loader.custom.sql.SQLQueryParser;
 
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by damian on 04.04.17.
- */
+@SuppressWarnings("unchecked")
 public class GenericDAOHibernate <T, PK extends Serializable> implements GenericDAO<T,PK> {
 
     private SessionFactory sessionFactory;
     private Class<T> type;
-    private Session session;
+    private final Session session;
 
     public GenericDAOHibernate() {
         session = getSession();
@@ -29,15 +26,12 @@ public class GenericDAOHibernate <T, PK extends Serializable> implements Generic
         session.beginTransaction();
     }
 
-    @SuppressWarnings("unchecked")
     public PK create(T newInstance) {
-        PK result = (PK) session.save(newInstance);
-        return result;
+        return (PK) session.save(newInstance);
     }
 
     public T read(PK id) {
-        T result = session.get(type,id);
-        return result;
+        return session.get(type,id);
     }
 
     public List executeQuery(String query){
@@ -52,7 +46,7 @@ public class GenericDAOHibernate <T, PK extends Serializable> implements Generic
         session.delete(persistentObject);
     }
 
-    public Session getSession()
+    private Session getSession()
     {
         Configuration configuration = new Configuration().configure();
         sessionFactory = configuration.buildSessionFactory();

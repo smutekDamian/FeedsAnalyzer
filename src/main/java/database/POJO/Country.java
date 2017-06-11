@@ -4,9 +4,6 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by damian on 03.04.17.
- */
 @Entity
 @Table(name = "countries")
 public class Country {

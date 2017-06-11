@@ -4,10 +4,6 @@ package rss;
 import csv.writer.DownloadedFeed;
 import rss.reader.RssReader;
 
-
-/**
- * Created by damian on 16.03.17.
- */
 public class Main {
     public static void main(String[] args){
         DownloadedFeed[] downloadedFeeds = {

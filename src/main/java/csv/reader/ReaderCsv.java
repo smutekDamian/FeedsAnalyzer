@@ -10,9 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by damian on 04.04.17.
- */
 public class ReaderCsv {
 
     public static Map<String,String> readTwoFilesAndReturnTagsWithCountries(String tagsFilePath, String countriesFilePath){
@@ -37,7 +34,7 @@ public class ReaderCsv {
                 try {
                     result.add(nextLine[position]);
                 } catch (ArrayIndexOutOfBoundsException e){
-                    continue;
+                    e.printStackTrace();
                 }
 
             }

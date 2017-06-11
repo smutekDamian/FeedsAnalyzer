@@ -1,8 +1,5 @@
 package csv.writer;
 
-/**
- * Created by damian on 04.04.17.
- */
 public class DownloadedFeed {
     private String name;
     private String rssUrl;

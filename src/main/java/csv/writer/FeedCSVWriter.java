@@ -8,12 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Iterator;
 import java.util.List;
 
-/**
- * Created by damian on 16.03.17.
- */
 public class FeedCSVWriter {
 
     protected static void writeFeed(String filename, SyndFeed syndFeed, String feedTitle){
@@ -22,8 +18,8 @@ public class FeedCSVWriter {
         try {
             writer = new CSVWriter(new FileWriter(filename, true), ' ');
             List entries = syndFeed.getEntries();
-            for (final Iterator iter = entries.iterator(); iter.hasNext(); ){
-                final SyndEntry entry = (SyndEntry) iter.next();
+            for (Object entry1 : entries) {
+                final SyndEntry entry = (SyndEntry) entry1;
                 writer.writeNext((feedTitle + "#" + dateFormat.format(entry.getPublishedDate()) + "#" + entry.getTitle() +
                         "#" + entry.getDescription().getValue()).split("#"));
             }

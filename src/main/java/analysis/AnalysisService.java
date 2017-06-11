@@ -5,26 +5,21 @@ import database.DAO.GenericDAO;
 import database.DAO.GenericDAOHibernate;
 import database.POJO.PressRelease;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-/**
- * Created by damian on 06.05.17.
- */
+@SuppressWarnings("unchecked")
 public class AnalysisService {
 
-    private static final String FILEPATH_BASE = "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/Analysis/";
+    private static final String FILEPATH_BASE = "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/Analysis/NewFeeds/";
 
     public static void main(String[] args) {
-//        creatingFileWithQuantityOfTagsForEveryNewspaper();
-//        creatingFileWithQuantityOfTagsOnDate();
-//        creatingFilesWithEbolaTags();
-//        sumQuantityOfExistingOfTwoCountries();
-//        generateQuantityOfTagsForNewspapersGroupedByCountry();
-//        sumQuantityOfExistingOfTwoCountriesForEveryNewspaper();
+        creatingFileWithQuantityOfTagsForEveryNewspaper();
+        creatingFileWithQuantityOfTagsOnDate();
+        creatingFilesWithEbolaTags();
+        sumQuantityOfExistingOfTwoCountries();
+        generateQuantityOfTagsForNewspapersGroupedByCountry();
+        sumQuantityOfExistingOfTwoCountriesForEveryNewspaper();
         creatingFilesWithQuantityOfOrgTagsForEveryNewspaper();
     }
 
@@ -103,8 +98,12 @@ public class AnalysisService {
         for (Object aQueryResult : queryResult) {
             Object[] queryObject = (Object[]) aQueryResult;
             String[] args = new String[queryObject.length];
-            for (int i = 0; i < queryObject.length; i++){
-                args[i] = queryObject[i].toString();
+            try {
+                for (int i = 0; i < queryObject.length; i++){
+                    args[i] = queryObject[i].toString();
+                }
+            } catch (NullPointerException e){
+                continue;
             }
             String feedName = (String) queryObject[0];
             String filePath = FILEPATH_BASE + folderName + feedName + ".csv";
@@ -122,10 +121,12 @@ public class AnalysisService {
             e.printStackTrace();
             dao.closeSession();
         }
-        for (Object aQueryResult : queryResult) {
-            Object[] queryObject = (Object[]) aQueryResult;
-            writeToFile(filePath, queryObject);
+        if (queryResult != null){
+            for (Object aQueryResult : queryResult) {
+                Object[] queryObject = (Object[]) aQueryResult;
+                writeToFile(filePath, queryObject);
 
+            }
         }
         dao.closeSession();
     }

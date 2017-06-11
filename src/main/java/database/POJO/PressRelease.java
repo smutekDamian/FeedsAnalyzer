@@ -5,9 +5,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by damian on 03.04.17.
- */
 @Entity
 @Table(name = "pressreleases")
 public class PressRelease {

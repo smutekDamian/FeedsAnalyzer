@@ -7,6 +7,7 @@ import database.DAO.GenericDAOHibernate;
 import database.POJO.*;
 import org.hibernate.exception.DataException;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,12 +17,11 @@ import java.util.Locale;
 import java.util.Map;
 
 
-/**
- * Created by damian on 03.04.17.
- */
 public class HibernateUtil {
     private static final String MAIN_PATH = "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/1/Geomedia_extract_AGENDA/";
     private static final String ORG_PATH = "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/TaggedFeeds/OrgTag/";
+    private static final String NEW_FEEDS_PATH_TAGGED = "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/TaggedFeeds/NewFeeds/CountryTag";
+    private static final String NEW_FEEDS_PATH = "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/Feeds";
     private static String[] newspapersNames = {
             "South China Morning Post",
             "Le Monde",
@@ -112,9 +112,9 @@ public class HibernateUtil {
 //        addTagsToDb();
 //        addFeedsDataToDB();
 //        addPressReleasesToDB();
-//        addPressReleasesTagsData();
+        addPressReleasesTagsData();
 //        addPressReleasesEbolaTags();
-        addOrganizationFeedsTagged();
+//        addOrganizationFeedsTagged();
     }
 
     public static void addLanguagesToDB(){
@@ -312,49 +312,57 @@ public class HibernateUtil {
 //                "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/1/Sample_GeomediaDB/es_MEX_univer_int/rss_unique_tagged.csv",
 //                "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/1/Sample_GeomediaDB/en_USA_nytime_int/rss_unique_tagged.csv"
         };
-        String[] ebolaFilePaths = new String[feedsNames.length];
-        for (int i=0; i < feedsNames.length; i++){
-            ebolaFilePaths[i] = MAIN_PATH+ feedsNames[i] + "/rss_unique_TAG_country_Ebola.csv";
-            System.out.println(ebolaFilePaths[i]);
-        }
-
-        for (String filePath: ebolaFilePaths){
-            List<String> feedsNames = ReaderCsv.readAtPosition(filePath,1, '\t');
-            List<String> dates = ReaderCsv.readAtPosition(filePath, 2, '\t');
-            List<String> titles = ReaderCsv.readAtPosition(filePath, 3, '\t');
-            List<String> contents = ReaderCsv.readAtPosition(filePath, 4, '\t');
-            GenericDAO<PressRelease,Integer> dao = new GenericDAOHibernate<PressRelease, Integer>(PressRelease.class);
-            System.err.println(filePath);
-            for (int  i = 0; i < feedsNames.size(); i++){
-                String queryForFeed = "from Feed where name = \'" + feedsNames.get(i) + "\'";
-                List feeds = dao.executeQuery(queryForFeed);
-                if (feeds.size() != 1){
-                    continue;
-                }
-                try {
-                    PressRelease pressRelease = new PressRelease();
-                    pressRelease.setFeedID((Feed) feeds.get(0));
-                    pressRelease.setTitle(titles.get(i));
-                    pressRelease.setDate(convertStringToDate(dates.get(i)));
-                    pressRelease.setContent(contents.get(i));
-                    dao.create(pressRelease);
-                    if (i%20 == 0){
-                        dao.flushAndClear();
+//        String[] ebolaFilePaths = new String[feedsNames.length];
+//        for (int i=0; i < feedsNames.length; i++){
+//            ebolaFilePaths[i] = MAIN_PATH+ feedsNames[i] + "/rss_unique_TAG_country_Ebola.csv";
+//            System.out.println(ebolaFilePaths[i]);
+//        }
+        File file = new File(NEW_FEEDS_PATH);
+        File[] files = file.listFiles();
+        assert files != null;
+        for (File f: files){
+            if (f.isFile()) {
+                String filePath = f.getAbsolutePath();
+                List<String> feedsNames = ReaderCsv.readAtPosition(filePath,0, ' ');
+                List<String> dates = ReaderCsv.readAtPosition(filePath, 1, ' ');
+                List<String> titles = ReaderCsv.readAtPosition(filePath, 2, ' ');
+                List<String> contents = ReaderCsv.readAtPosition(filePath, 3, ' ');
+                GenericDAO<PressRelease,Integer> dao = new GenericDAOHibernate<PressRelease, Integer>(PressRelease.class);
+                System.err.println(filePath);
+                for (int  i = 0; i < feedsNames.size(); i++){
+                    String queryForFeed = "from Feed where name = \'" + feedsNames.get(i) + "\'";
+                    List feeds = dao.executeQuery(queryForFeed);
+                    if (feeds.size() != 1){
+                        continue;
                     }
-                }catch (DataException e){
-                    e.printStackTrace();
-                    continue;
-                }catch (IndexOutOfBoundsException e){
-                    e.printStackTrace();
-                    continue;
+                    try {
+                        PressRelease pressRelease = new PressRelease();
+                        pressRelease.setFeedID((Feed) feeds.get(0));
+                        pressRelease.setTitle(titles.get(i));
+                        pressRelease.setDate(convertStringToDate(dates.get(i)));
+                        pressRelease.setContent(contents.get(i));
+                        dao.create(pressRelease);
+                        if (i%20 == 0){
+                            dao.flushAndClear();
+                        }
+                    }catch (DataException e){
+                        e.printStackTrace();
+                    }catch (IndexOutOfBoundsException e){
+                        e.printStackTrace();
+                    }
+
                 }
-
+                dao.closeSession();
             }
-            dao.closeSession();
-
         }
+
+//        for (String filePath: ebolaFilePaths){
+//
+//
+//        }
+
     }
-    public static void addPressReleasesTagsData(){
+    private static void addPressReleasesTagsData(){
         String[] filesPaths = {
 //                "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/1/Sample_GeomediaDB/en_CHN_mopost_int/rss_unique_tagged.csv",
 //                "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/1/Sample_GeomediaDB/fr_FRA_lmonde_int/rss_unique_tagged.csv",
@@ -362,43 +370,54 @@ public class HibernateUtil {
 //                "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/1/Sample_GeomediaDB/es_MEX_univer_int/rss_unique_tagged.csv",
 //                "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/1/Sample_GeomediaDB/en_USA_nytime_int/rss_unique_tagged.csv"
         };
-        String[] ebolaFilePaths = new String[feedsNames.length];
-        for (int i=0; i < feedsNames.length; i++){
-            ebolaFilePaths[i] = MAIN_PATH+ feedsNames[i] + "/rss_unique_TAG_country_Ebola.csv";
-            System.out.println(ebolaFilePaths[i]);
-        }
-        for (int i1 = 0; i1 < ebolaFilePaths.length; i1++) {
-            String filePath = ebolaFilePaths[i1];
-            List<String> titles = ReaderCsv.readAtPosition(filePath, 3, '\t');
-            List<String> tags = ReaderCsv.readAtPosition(filePath, 5, '\t');
-            GenericDAO<PressReleasesTag, Integer> dao = new GenericDAOHibernate<PressReleasesTag, Integer>(PressReleasesTag.class);
-            System.err.println("#################################");
-            System.err.println(filePath);
-            System.err.println("#################################");
-            String queryForPressRelease = "select p from PressRelease as p inner join p.feedID as f where f.name = \'" + feedsNames[i1] + "\'";
-            String queryForTag = "from TAG";
-            pressReleases = dao.executeQuery(queryForPressRelease);
-            tagsList = dao.executeQuery(queryForTag);
-            for (int i = 0; i < titles.size(); i++) {
-                System.err.println(i);
-                if (tags.get(i).equals("") || titles.get(i).contains("\'")) {
-                    continue;
+//        String[] ebolaFilePaths = new String[feedsNames.length];
+//        for (int i=0; i < feedsNames.length; i++){
+//            ebolaFilePaths[i] = MAIN_PATH+ feedsNames[i] + "/rss_unique_TAG_country_Ebola.csv";
+//            System.out.println(ebolaFilePaths[i]);
+//        }
+        File file = new File(NEW_FEEDS_PATH_TAGGED);
+        File[] files = file.listFiles();
+        assert files != null;
+        for (File f: files) {
+            if (f.isFile()) {
+                String filePath = f.getAbsolutePath();
+                List<String> titles = ReaderCsv.readAtPosition(filePath, 2, '\t');
+                List<String> tags = ReaderCsv.readAtPosition(filePath, 4, '\t');
+                GenericDAO<PressReleasesTag, Integer> dao = new GenericDAOHibernate<PressReleasesTag, Integer>(PressReleasesTag.class);
+                System.err.println("#################################");
+                System.err.println(filePath);
+                System.err.println("#################################");
+                String feedName = f.getName().split("\\.")[0];
+                System.out.println(feedName);
+                String queryForPressRelease = "select p from PressRelease as p inner join p.feedID as f where f.name = \'" + feedName + "\'";
+                String queryForTag = "from TAG";
+                pressReleases = dao.executeQuery(queryForPressRelease);
+                tagsList = dao.executeQuery(queryForTag);
+                for (int i = 0; i < titles.size(); i++) {
+                    System.err.println(i);
+                    if (tags.get(i).equals("") || titles.get(i).contains("\'")) {
+                        continue;
+                    }
+                    PressRelease pressRelease = findPressRelease(titles.get(i));
+                    TAG tag = findTag(tags.get(i));
+                    if (pressRelease == null || tag == null){
+                        continue;
+                    }
+                    PressReleasesTag pressReleasesTag = new PressReleasesTag();
+                    pressReleasesTag.setPressReleaseID(pressRelease);
+                    pressReleasesTag.setTagID(tag);
+                    dao.create(pressReleasesTag);
+                    if (i % 20 == 0) {
+                        dao.flushAndClear();
+                    }
                 }
-                PressRelease pressRelease = findPressRelease(titles.get(i));
-                TAG tag = findTag(tags.get(i));
-                if (pressRelease == null || tag == null){
-                    continue;
-                }
-                PressReleasesTag pressReleasesTag = new PressReleasesTag();
-                pressReleasesTag.setPressReleaseID(pressRelease);
-                pressReleasesTag.setTagID(tag);
-                dao.create(pressReleasesTag);
-                if (i % 20 == 0) {
-                    dao.flushAndClear();
-                }
+                dao.closeSession();
             }
-            dao.closeSession();
         }
+
+//        for (int i1 = 0; i1 < ebolaFilePaths.length; i1++) {
+//
+//        }
     }
     public static void addPressReleasesEbolaTags(){
         String[] ebolaFilePaths = new String[feedsNames.length];
@@ -481,7 +500,7 @@ public class HibernateUtil {
             dao.closeSession();
         }
     }
-    public static Date convertStringToDate(String date){
+    private static Date convertStringToDate(String date){
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.ENGLISH);
         Date resultDate = null;
         try {
@@ -492,18 +511,18 @@ public class HibernateUtil {
         return resultDate;
     }
     private static TAG findTag(String tagName){
-        for (int i = 0; i < tagsList.size(); i++) {
-            TAG t = (TAG) tagsList.get(i);
-            if (t.getName().equals(tagName)){
+        for (Object aTagsList : tagsList) {
+            TAG t = (TAG) aTagsList;
+            if (t.getName().equals(tagName)) {
                 return t;
             }
         }
         return null;
     }
     private static PressRelease findPressRelease(String title){
-        for (int i = 0; i < pressReleases.size(); i++) {
-            PressRelease t = (PressRelease) pressReleases.get(i);
-            if (t.getTitle().equals(title)){
+        for (Object pressRelease : pressReleases) {
+            PressRelease t = (PressRelease) pressRelease;
+            if (t.getTitle().equals(title)) {
                 return t;
             }
         }

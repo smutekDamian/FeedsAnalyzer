@@ -4,13 +4,10 @@ import au.com.bytecode.opencsv.CSVWriter;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
 
-/**
- * Created by damian on 04.04.17.
- */
 public class WriterCsv {
     public static void writeTagsAndCountries(String filename, Map<String,String> tagsAndCountries){
         Iterator it = tagsAndCountries.entrySet().iterator();
@@ -22,7 +19,7 @@ public class WriterCsv {
 
     }
     public static void write(String filename, String... args ){
-        CSVWriter writer = null;
+        CSVWriter writer;
         try {
             File file = new File(filename);
             File parentDir = file.getParentFile();
