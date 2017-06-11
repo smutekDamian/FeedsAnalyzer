@@ -1,10 +1,11 @@
 package analysis;
 
-import csv.writer.WriterCsv;
+import csv.writer.WriterCsvFiles;
 import database.DAO.GenericDAO;
 import database.DAO.GenericDAOHibernate;
 import database.POJO.PressRelease;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,7 +108,11 @@ public class AnalysisService {
             }
             String feedName = (String) queryObject[0];
             String filePath = FILEPATH_BASE + folderName + feedName + ".csv";
-            WriterCsv.write(filePath, args);
+            try {
+                WriterCsvFiles.write(filePath, args);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         dao.closeSession();
     }
@@ -136,7 +141,7 @@ public class AnalysisService {
             args[i] = toWrite[i].toString();
         }
         try {
-            WriterCsv.write(filePath, args);
+            WriterCsvFiles.write(filePath, args);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -158,13 +163,19 @@ public class AnalysisService {
                     List<PressRelease> secondCountryPressReleases = dao.executeQuery(createQueryToPressReleasesForCountry(secondCountry));
                     int numberOfCommonExistence = findNumberOfCommonExistence(firstCountryPressReleases, secondCountryPressReleases);
                     System.err.println(country + " " + secondCountry + " " + numberOfCommonExistence );
-                    WriterCsv.write(FILEPATH_BASE + folderFilePath + country + ".csv", country, secondCountry, String.valueOf(numberOfCommonExistence));
+                    try {
+                        WriterCsvFiles.write(FILEPATH_BASE + folderFilePath + country + ".csv", country, secondCountry, String.valueOf(numberOfCommonExistence));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
 
             }
         }
         dao.closeSession();
     }
+
+    //VERY BRUTAL WAY - NEED TO BE DONE BETTER
     private static void sumQuantityOfExistingOfTwoCountriesForEveryNewspaper(){
         String folderFilePath = "ExistingOfTwoCountriesInNewspaper/";
         GenericDAO dao = new GenericDAOHibernate();
@@ -185,7 +196,6 @@ public class AnalysisService {
                         || country.equals("Germany") || country.equals("China") || country.equals("Ukraine") || country.equals("Poland") ||
                         country.equals("Iran")) {
                     List<PressRelease> firstCountryPressReleases = dao.executeQuery(createQueryToPressReleasesForCountryInNewspaper(country, args[0]));
-//            List<PressRelease> allPressReleasesWithoutCountry = dao.executeQuery(createQueryToPressReleasesWithoutCountry(country));
                     for (String secondCountry : secondListOfCountries) {
                         if (!country.equals(secondCountry)){
                             List<PressRelease> secondCountryPressReleases = dao.executeQuery(createQueryToPressReleasesForCountryInNewspaper(secondCountry, args[0]));
@@ -194,8 +204,12 @@ public class AnalysisService {
                                 continue;
                             }
                             System.err.println(country + " " + secondCountry + " " + numberOfCommonExistence );
-                            WriterCsv.write(FILEPATH_BASE + folderFilePath + country + "_" + args[0] + ".csv",
-                                    args[0], args[1], country, secondCountry, String.valueOf(numberOfCommonExistence));
+                            try {
+                                WriterCsvFiles.write(FILEPATH_BASE + folderFilePath + country + "_" + args[0] + ".csv",
+                                        args[0], args[1], country, secondCountry, String.valueOf(numberOfCommonExistence));
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
 
                     }
@@ -221,13 +235,6 @@ public class AnalysisService {
                 "inner join Feed as f on p.feedID = f.ID \n" +
                 "inner join Newspaper as n on n.ID = f.newspaperID \n" +
                 "where c.name = \'" + country +"\' and n.name = \'" + newspaper + "\'";
-    }
-    private static String createQueryToPressReleasesWithoutCountry(String country){
-        return "select p from PressRelease as p \n" +
-                "inner join PressReleasesTag as prt on p.ID = prt.pressReleaseID \n" +
-                "inner join TAG as t on prt.tagID = t.ID \n" +
-                "inner join Country as c on c.ID = t.countryID \n" +
-                "where c.name != \'" + country +"\'";
     }
     private static int findNumberOfCommonExistence(List<PressRelease> firstCountryPressReleases, List<PressRelease> secondCountryPressReleases){
         int result = 0;

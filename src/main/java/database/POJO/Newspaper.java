@@ -22,6 +22,7 @@ public class Newspaper {
     private Set<Feed> feeds = new HashSet<Feed>(0);
 
     public Newspaper() {
+        //Constructor for Hibernate
     }
 
     public int getID() {

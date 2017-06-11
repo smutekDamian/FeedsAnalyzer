@@ -21,6 +21,7 @@ public class Feed {
     private Set<PressRelease> pressReleases = new HashSet<PressRelease>(0);
 
     public Feed() {
+        //Constructor for Hibernate
     }
 
     public int getID() {

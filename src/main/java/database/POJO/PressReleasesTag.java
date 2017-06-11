@@ -16,6 +16,7 @@ public class PressReleasesTag {
     private TAG tagID;
 
     public PressReleasesTag() {
+        //Constructor for Hibernate
     }
 
     public int getID() {

@@ -1,4 +1,4 @@
-package csv.writer;
+package download;
 
 import au.com.bytecode.opencsv.CSVWriter;
 import com.sun.syndication.feed.synd.SyndEntry;
@@ -10,7 +10,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class FeedCSVWriter {
+public class FeedWriter {
+
+    public static void writeFeeds(DownloadedFeed[] downloadedFeeds){
+        for (DownloadedFeed feed: downloadedFeeds){
+            String filename = "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/Feeds/" + feed.getName() +".csv";
+            writeFeed(filename, feed.getSyndFeed(), feed.getName());
+        }
+    }
 
     protected static void writeFeed(String filename, SyndFeed syndFeed, String feedTitle){
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

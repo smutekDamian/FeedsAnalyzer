@@ -10,24 +10,32 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ReaderCsv {
+public class ReaderCsvFiles {
+
+    private ReaderCsvFiles() {
+    }
 
     public static Map<String,String> readTwoFilesAndReturnTagsWithCountries(String tagsFilePath, String countriesFilePath){
         Map<String,String> result = new HashMap<String, String>();
-        List<String> countries = readAtPosition(countriesFilePath, 1, ' ');
-        for (String country: countries){
-            String foundTag = findTagFittingToCountry(country, tagsFilePath);
-            if (foundTag != null){
-                result.put(foundTag, country);
+        try {
+            List<String> countries = readAtPosition(countriesFilePath, 1, ' ');
+            for (String country: countries){
+                String foundTag = findTagFittingToCountry(country, tagsFilePath);
+                if (foundTag != null){
+                    result.put(foundTag, country);
+                }
             }
+        }catch (IOException e){
+            e.printStackTrace();
         }
         return result;
     }
 
-    public static List<String> readAtPosition(String filepath, int position, char separator){
+    public static List<String> readAtPosition(String filepath, int position, char separator) throws IOException {
         List<String> result = null;
+        FileReader fileReader = new FileReader(filepath);
         try {
-            CSVReader reader = new CSVReader(new FileReader(filepath), separator);
+            CSVReader reader = new CSVReader(fileReader, separator);
             result = new ArrayList<String>();
             String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
@@ -42,14 +50,17 @@ public class ReaderCsv {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            fileReader.close();
         }
         return result;
     }
 
-    public static Map<String, String> readAtTwoPosition(String filePath, int firstPosition, int secondPosition, char separator){
+    public static Map<String, String> readAtTwoPosition(String filePath, int firstPosition, int secondPosition, char separator) throws IOException {
         Map<String, String> result = null;
+        FileReader fileReader = new FileReader(filePath);
         try {
-            CSVReader reader = new CSVReader(new FileReader(filePath), separator);
+            CSVReader reader = new CSVReader(fileReader, separator);
             result = new HashMap<String, String>();
             String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
@@ -59,13 +70,16 @@ public class ReaderCsv {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            fileReader.close();
         }
         return result;
     }
 
-    private static String findTagFittingToCountry(String country, String filepath){
+    private static String findTagFittingToCountry(String country, String filePath) throws IOException {
+        FileReader fileReader = new FileReader(filePath);
         try {
-            CSVReader reader = new CSVReader(new FileReader(filepath), '\t');
+            CSVReader reader = new CSVReader(fileReader, '\t');
             String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
                 if (nextLine[2].equals(country)){
@@ -76,6 +90,8 @@ public class ReaderCsv {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            fileReader.close();
         }
         return null;
     }

@@ -1,12 +1,24 @@
-package csv.writer;
+package download;
+
+import com.sun.syndication.feed.synd.SyndFeed;
 
 public class DownloadedFeed {
     private String name;
     private String rssUrl;
+    private SyndFeed syndFeed;
+
 
     public DownloadedFeed(String name, String rssUrl) {
         this.name = name;
         this.rssUrl = rssUrl;
+    }
+
+    public SyndFeed getSyndFeed() {
+        return syndFeed;
+    }
+
+    public void setSyndFeed(SyndFeed syndFeed) {
+        this.syndFeed = syndFeed;
     }
 
     public String getName() {

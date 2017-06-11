@@ -24,6 +24,7 @@ public class PressRelease {
     private Set<PressReleasesTag> pressReleasesTags = new HashSet<PressReleasesTag>(0);
 
     public PressRelease() {
+        //Constructor for Hibernate
     }
 
     public int getID() {

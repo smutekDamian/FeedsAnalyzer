@@ -1,7 +1,8 @@
 package rss;
 
 
-import csv.writer.DownloadedFeed;
+import download.DownloadedFeed;
+import download.FeedWriter;
 import rss.reader.RssReader;
 
 public class Main {
@@ -35,5 +36,6 @@ public class Main {
         };
         RssReader reader = new RssReader();
         reader.readAndWriteToFile(downloadedFeeds);
+        FeedWriter.writeFeeds(downloadedFeeds);
     }
 }
