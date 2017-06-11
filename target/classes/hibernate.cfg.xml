@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+
+
+        <!-- BAZA DANYCH DLA NOWYCH NOTEK -->
+
+        <property name="hibernate.connection.url">jdbc:mysql://mysql.agh.edu.pl/smutek1</property>
+        <property name="hibernate.connection.username">smutek1</property>
+        <property name="hibernate.connection.password">xAWtFNpDfUtvcA20</property>
+
+
+        <!-- BAZA DANYCH DLA STARYCH NOTEK
+
+        <property name="hibernate.connection.url">jdbc:mysql://mysql.agh.edu.pl/smutek</property>
+        <property name="hibernate.connection.username">smutek</property>
+        <property name="hibernate.connection.password">rS0bz1fce6EhbMza</property>
+                             -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="show_sql">true</property>
+        <mapping class="database.POJO.PressReleasesTag" />
+        <mapping class="database.POJO.PressRelease" />
+        <mapping class="database.POJO.Country" />
+        <mapping class="database.POJO.Feed" />
+        <mapping class="database.POJO.Language" />
+        <mapping class="database.POJO.Newspaper" />
+        <mapping class="database.POJO.TAG" />
+    </session-factory>
+</hibernate-configuration>
