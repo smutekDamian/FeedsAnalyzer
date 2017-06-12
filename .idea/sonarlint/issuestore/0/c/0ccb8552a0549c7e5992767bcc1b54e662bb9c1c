@@ -1,36 +1,0 @@
-
-‚squid:UnusedPrivateMethod"XRemove this unused private "creatingFilesWithQuantityOfOrgTagsForEveryNewspaper" method.(ŠÉÿş8òäÄŞÉ+
-=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-nsquid:UnusedPrivateMethod"?Remove this unused private "creatingFilesWithEbolaTags" method.(›„Œéøÿÿÿÿ8€ ŞÉ+
-Wsquid:S1854"CRemove this useless assignment to local variable "queryNewspapers".(÷¿™"
-esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ä´ä†şÿÿÿÿ
-Œsquid:S1192"rDefine a constant instead of duplicating this literal "  INNER JOIN Country as c ON n.countryID = c.ID\n" 3 times.(Æ±›§şÿÿÿÿ
-rsquid:S1192"]Define a constant instead of duplicating this literal "  WHERE t.name = \'EBOLA\'\n" 3 times.(¹Ëì¦
-esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(÷Öñ°üÿÿÿÿ
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(³ä‡ïúÿÿÿÿ8€ ŞÉ+
-gsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.(Á¡´ø
-=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-‚squid:S1192"mDefine a constant instead of duplicating this literal "  INNER JOIN TAG as t ON  prt.tagID = t.ID\n" 4 times.(Êİê¢
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(‰»”¾úÿÿÿÿ8¶äœŞÉ+
-ƒsquid:UnusedPrivateMethod"YRemove this unused private "sumQuantityOfExistingOfTwoCountriesForEveryNewspaper" method.(Á¡´ø8òäÄŞÉ+
-R
-squid:S106"9Replace this use of System.out or System.err by a logger.(ôúÏˆûÿÿÿÿ
-rsquid:UnusedPrivateMethod"HRemove this unused private "sumQuantityOfExistingOfTwoCountries" method.(”éåĞ8€ ŞÉ+
-‡squid:S1192"mDefine a constant instead of duplicating this literal "  INNER JOIN Feed as f ON pr.feedID = f.ID\n" 7 times.(šÒÁüÿÿÿÿ
-‚squid:UnusedPrivateMethod"XRemove this unused private "generateQuantityOfTagsForNewspapersGroupedByCountry" method.(Ç÷ª©8€ ŞÉ+
-esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(÷Öñ°üÿÿÿÿ
-Hsquid:S1481"4Remove this unused "queryNewspapers" local variable.(÷¿™"
-Œsquid:S1192"rDefine a constant instead of duplicating this literal "  INNER JOIN Country as c ON c.ID = t.countryID\n" 3 times.(†Ï±„ùÿÿÿÿ
-Vsquid:S1075"ARefactor your code to get this URI from a customizable parameter.(©Ã±¦
-squid:S1192"lDefine a constant instead of duplicating this literal "  INNER JOIN TAG as t ON prt.tagID = t.ID\n" 3 times.(Êİê¢
-\squid:S1854"BRemove this useless assignment to local variable "queryCountries".(›åˆüÿÿÿÿ
-squid:S1192"vDefine a constant instead of duplicating this literal "  INNER JOIN Newspaper as n ON f.newspaperID = n.ID\n" 7 times.(¾ôƒÕıÿÿÿÿ
-R
-squid:S106"9Replace this use of System.out or System.err by a logger.(ôúÏˆûÿÿÿÿ
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ƒ÷°ÂÉ+
-Msquid:S1481"3Remove this unused "queryCountries" local variable.(›åˆüÿÿÿÿ
-`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(±óªÙ
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Ã±ÂÉ+
-›squid:S1192"€Define a constant instead of duplicating this literal "  INNER JOIN PressRelease as pr ON prt.pressReleaseID = pr.ID\n" 7 times.(‰ Ô¦ûÿÿÿÿ
-ƒsquid:UnusedPrivateMethod"TRemove this unused private "creatingFileWithQuantityOfTagsForEveryNewspaper" method.(“¯èüÿÿÿÿ8¶äœŞÉ+
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ĞÈ°ÂÉ+

@@ -1,64 +1,0 @@
-
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(œ¨’ûşÿÿÿÿ8æÖôÄÉ+
-csquid:S1192"GDefine a constant instead of duplicating this literal "French" 8 times.(çˆî8åß¤ÃÉ+
-T
-squid:S106"9Replace this use of System.out or System.err by a logger.(­À¥¶8æÖôÄÉ+
-T
-squid:S106"9Replace this use of System.out or System.err by a logger.(½ô­µ8åß¤ÃÉ+
-M
-squid:S106"9Replace this use of System.out or System.err by a logger.(å¹ç»
-[squid:S1075"ARefactor your code to get this URI from a customizable parameter.(¿ÑîÑşÿÿÿÿ
-T
-squid:S106"9Replace this use of System.out or System.err by a logger.(½ô­µ8åß¤ÃÉ+
-^squid:S1192"IDefine a constant instead of duplicating this literal "English" 20 times.(°¦Ÿè
-¨squid:S1192"‹Define a constant instead of duplicating this literal "select p from PressRelease as p inner join p.feedID as f where f.name = \'" 3 times.(ŸÃ±8æÖôÄÉ+
-Vsquid:S1075"ARefactor your code to get this URI from a customizable parameter.(¼½ÆØ
-bsquid:S1075"ARefactor your code to get this URI from a customizable parameter.(†Í«şÿÿÿÿ8åß¤ÃÉ+
-M
-squid:S106"9Replace this use of System.out or System.err by a logger.(å¹ç»
-]squid:S1075"ARefactor your code to get this URI from a customizable parameter.(ƒ×Ä£8åß¤ÃÉ+
-y
-squid:S135"YReduce the total number of break and continue statements in this loop to use at most one.(ıªÌ•øÿÿÿÿ8æÖôÄÉ+
-y
-squid:S135"YReduce the total number of break and continue statements in this loop to use at most one.(ıªÌ•øÿÿÿÿ8åß¤ÃÉ+
-csquid:S1192"GDefine a constant instead of duplicating this literal "Mexico" 3 times.(ïÏ¸Ï8åß¤ÃÉ+
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(×”îØùÿÿÿÿ8½ÊåÄÉ+
-nsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 37 to the 15 allowed.(¿ÍË¡8åß¤ÃÉ+
-T
-squid:S106"9Replace this use of System.out or System.err by a logger.(½ô­µ8æÖôÄÉ+
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8åß¤ÃÉ+
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8åß¤ÃÉ+
-Vsquid:S1075"ARefactor your code to get this URI from a customizable parameter.(Şæãø
-T
-squid:S106"9Replace this use of System.out or System.err by a logger.(å¹ç»8åß¤ÃÉ+
-bsquid:S1075"ARefactor your code to get this URI from a customizable parameter.(†Í«şÿÿÿÿ8åß¤ÃÉ+
-^squid:S1192"IDefine a constant instead of duplicating this literal "Spanish" 12 times.(¿ôàç
-ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ãº‡ùÿÿÿÿ8åß¤ÃÉ+
-T
-squid:S106"9Replace this use of System.out or System.err by a logger.(¾œøÎ8åß¤ÃÉ+
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(×”îØùÿÿÿÿ8åß¤ÃÉ+
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(¶ú§©øÿÿÿÿ8åß¤ÃÉ+
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(¶ú§©øÿÿÿÿ8åß¤ÃÉ+
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8åß¤ÃÉ+
-ƒsquid:S1192"bDefine a constant instead of duplicating this literal "#################################" 6 times.(œ¨’ûşÿÿÿÿ8¹ÀµÄÉ+
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(œ¨’ûşÿÿÿÿ8åß¤ÃÉ+
-R
-squid:S106"9Replace this use of System.out or System.err by a logger.(œ¨’ûşÿÿÿÿ
-y
-squid:S135"YReduce the total number of break and continue statements in this loop to use at most one.(ıªÌ•øÿÿÿÿ8åß¤ÃÉ+
-T
-squid:S106"9Replace this use of System.out or System.err by a logger.(å¹ç»8æÖôÄÉ+
-R
-squid:S106"9Replace this use of System.out or System.err by a logger.(œ¨’ûşÿÿÿÿ
-Nsquid:S1068"2Remove this unused "NEW_FEEDS_PATH" private field.(ƒ×Ä£8ğ®ÃÉ+
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(œ¨’ûşÿÿÿÿ8åß¤ÃÉ+
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(œ¨’ûşÿÿÿÿ8æÖôÄÉ+
-ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.(Ğšóâùÿÿÿÿ8æÖôÄÉ+

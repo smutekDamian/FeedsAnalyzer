@@ -1,25 +1,0 @@
-
-gsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(Õú§Ü
-Vsquid:S1075"ARefactor your code to get this URI from a customizable parameter.(ÚÑĞ•
-bsquid:S1075"ARefactor your code to get this URI from a customizable parameter.(™®¤ºøÿÿÿÿ8àÛÂÉ+
-³squid:S1192"˜Define a constant instead of duplicating this literal "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/1/Sample_GeomediaDB/Dico_Country_Free.csv" 4 times.(ÎÂñºıÿÿÿÿ
-]squid:S1075"ARefactor your code to get this URI from a customizable parameter.(±õÚ…8àÛÂÉ+
-Osquid:S1068":Remove this unused "secondFeedsFolderPaths" private field.(ÚÑĞ•
-psquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(å©úê
-=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-\squid:S1075"ARefactor your code to get this URI from a customizable parameter.(¤å©%8àÛÂÉ+
-Asquid:S1481",Remove this unused "tagsMap" local variable.(ó°è–
-hsquid:UnusedPrivateMethod"?Remove this unused private "createTagsAndCountriesFile" method.(ıóÒ}8ÌµÛÂÉ+
-Psquid:S1854";Remove this useless assignment to local variable "tagsMap".(ó°è–
-R
-squid:S106"9Replace this use of System.out or System.err by a logger.(¤ı Éúÿÿÿÿ
-;squid:S1075"&Remove this hard-coded path-delimiter.(Ø€È‚
-;squid:S1075"&Remove this hard-coded path-delimiter.(€ÍÃ§
-usquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÎÂñºıÿÿÿÿ
-Vsquid:S1075"ARefactor your code to get this URI from a customizable parameter.(å©úê
-;squid:S1075"&Remove this hard-coded path-delimiter.(ñ†ò§
-usquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ú˜Ñşÿÿÿÿ
-R
-squid:S106"9Replace this use of System.out or System.err by a logger.(¤ı Éúÿÿÿÿ
-usquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(›ñ˜²üÿÿÿÿ
-psquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÚÑĞ•
