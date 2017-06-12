@@ -15,13 +15,13 @@ public class AnalysisService {
     private static final String FILEPATH_BASE = "/home/damian/Pulpit/Studia 16-17/Semestr 6/IO/Analysis/NewFeeds/";
 
     public static void main(String[] args) {
-        creatingFileWithQuantityOfTagsForEveryNewspaper();
+//        creatingFileWithQuantityOfTagsForEveryNewspaper();
         creatingFileWithQuantityOfTagsOnDate();
-        creatingFilesWithEbolaTags();
-        sumQuantityOfExistingOfTwoCountries();
-        generateQuantityOfTagsForNewspapersGroupedByCountry();
-        sumQuantityOfExistingOfTwoCountriesForEveryNewspaper();
-        creatingFilesWithQuantityOfOrgTagsForEveryNewspaper();
+//        creatingFilesWithEbolaTags();
+//        sumQuantityOfExistingOfTwoCountries();
+//        generateQuantityOfTagsForNewspapersGroupedByCountry();
+//        sumQuantityOfExistingOfTwoCountriesForEveryNewspaper();
+//        creatingFilesWithQuantityOfOrgTagsForEveryNewspaper();
     }
 
     private static void creatingFileWithQuantityOfTagsForEveryNewspaper(){
@@ -52,14 +52,14 @@ public class AnalysisService {
     }
 
     private static void creatingFileWithQuantityOfTagsOnDate(){
-        String folderName = "TagsForDates/";
+        String folderName = "TagsForDates/NEW/";
         String query = "SELECT f.name, n.name, pr.date, c.name,  count(t.name) FROM PressReleasesTag as prt\n" +
                 "  INNER JOIN PressRelease as pr ON prt.pressReleaseID = pr.ID\n" +
                 "  INNER JOIN TAG as t ON  prt.tagID = t.ID\n" +
                 "  INNER JOIN Feed as f ON pr.feedID = f.ID\n" +
                 "  INNER JOIN Newspaper as n ON f.newspaperID = n.ID\n" +
                 "  INNER JOIN Country as c ON c.ID = t.countryID\n" +
-                "  GROUP BY n.name, t.name, year(pr.date), month(pr.date), day(pr.date)";
+                "  GROUP BY n.name, t.name, year(pr.date), month(pr.date), day(pr.date)\n";
         createFiles(folderName, query);
     }
     private static void creatingFilesWithEbolaTags(){
